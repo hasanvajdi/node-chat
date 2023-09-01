@@ -1,0 +1,22 @@
+@import "../../../config/scss/tools";
+@import "../../../config/scss/colors";
+
+.chatsContainer{
+  height: 100%;
+  @include flexBox(column);
+
+  .chatsList{
+    height: 90%;
+    width: 90%;
+    padding: 10px;
+  }
+
+  .createNewChat{
+    @include flexBox();
+    height: 10%;
+    width: 90%;
+    font-weight: bold;
+    border-top: 1px solid $light-gray-color;
+    padding: 0 10px;
+  }
+}
