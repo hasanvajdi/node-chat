@@ -10,6 +10,7 @@ import Item from "./Item";
 
 //  tyeps and interfaces
 import { chatItemType } from "./types";
+import { Divider } from "antd";
 
 function Chats() {
   //  hooks
@@ -26,7 +27,12 @@ function Chats() {
       const data: chatItemType[] = chats.data as chatItemType[];
 
       if (data.length) {
-        return data.map((item: chatItemType) => <Item data={item} />);
+        return data.map((item: chatItemType) => (
+          <>
+            <Item data={item} />
+            <Divider style={{ marginTop: 5, marginBottom: 5, height: 0 }} />
+          </>
+        ));
       } else {
         return <span>no chat yet</span>;
       }
