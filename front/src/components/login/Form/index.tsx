@@ -39,10 +39,7 @@ function Form() {
 
     if (loginResult.isError && loginResult.error) {
       var errorObjet: loginError = loginResult.error;
-      var errorContent = errorObjet?.data.non_field_errors;
-      errorContent.map((item: string, key: number) => {
-        messageApi.error(item);
-      });
+      console.log("aaaa : ", errorObjet);
     }
 
     if (loginResult.isSuccess) {

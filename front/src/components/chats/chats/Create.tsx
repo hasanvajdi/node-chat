@@ -1,12 +1,17 @@
+import { useEffect, useState } from "react";
+
 import { Modal, Form, Input, message, Spin } from "antd";
 
+//  components
 import SubmitButton from "components/Buttons/Submit";
-import { useEffect, useState } from "react";
+//  hooks
 import { useCreateChatMutation } from "redux/requests/chats";
+//  types and interfaces
+import { createChatTypes } from "./types";
 
-
-function CreateChat(){
-
+function CreateChat(props: createChatTypes) {
+  //  variables
+  const { handleClose } = props;
 
   //  states
   const [isLoading, setIsLoading] = useState(false);
@@ -15,33 +20,39 @@ function CreateChat(){
   const [createChat, createResult] = useCreateChatMutation();
 
   //  handlers
-  const handleCreateChat = (data:string)=>{
-    setIsLoading(true)
-    createChat(data)
-  }
+  const handleCreateChat = (data: string) => {
+    setIsLoading(true);
+    createChat(data);
+  };
 
   //  side effects
-  useEffect(()=>{
-    console.log("createResult : ", createResult)
-
-    if(createResult.isError){
-      const errorObject:any = createResult.error;
-      message.error(errorObject.data.message)
+  useEffect(() => {
+    if (createResult.isError) {
+      const errorObject: any = createResult.error;
+      message.error(errorObject.data.message);
       setIsLoading(false);
     }
 
-    if(createResult.isSuccess){
-      message.error("this user not found.")
+    if (createResult.isSuccess) {
+      message.error("this user not found.");
       setIsLoading(false);
     }
-  }, [createResult])
+  }, [createResult]);
 
-  return(
-    <Modal open footer={null} title={<h2>Create New Chat</h2>}>
+  return (
+    <Modal
+      open
+      footer={null}
+      title={<h2>Create New Chat</h2>}
+      onCancel={() => handleClose(false)}
+    >
       <Spin spinning={isLoading}>
         <div className="w-full min-h-10 h-fit mt-12">
           <Form onFinish={handleCreateChat}>
-            <Form.Item name="receiver" rules={[{required:true, message: " "}]}>
+            <Form.Item
+              name="receiver"
+              rules={[{ required: true, message: " " }]}
+            >
               <Input size="large" placeholder="type username" />
             </Form.Item>
 
@@ -52,7 +63,7 @@ function CreateChat(){
         </div>
       </Spin>
     </Modal>
-  )
+  );
 }
 
 export default CreateChat;
