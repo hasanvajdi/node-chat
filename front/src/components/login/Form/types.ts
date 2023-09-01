@@ -1,13 +1,15 @@
-
 interface loginInputsTypes {
-    name: string,
-    password: string
+  name: string;
+  password: string;
 }
 
 interface loginError {
-    status?: number;
-    data?: any;
+  status?: number;
+  data?: any;
 }
 
+interface loginSuccessType {
+  access_token: string;
+}
 
-export type { loginInputsTypes, loginError }
+export type { loginInputsTypes, loginError, loginSuccessType };

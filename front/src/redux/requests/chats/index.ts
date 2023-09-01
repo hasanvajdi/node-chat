@@ -6,9 +6,11 @@ import { privateBaseQuery } from "..";
 export const chatApi = createApi({
   reducerPath: "chatApi",
   baseQuery: privateBaseQuery("/chats"),
+  tagTypes: ["chats"],
   endpoints: (builder: any) => ({
     getChats: builder.query({
       query: () => "",
+      providesTags: ["chats"],
     }),
     createChat: builder.mutation({
       query: (data: string) => ({
@@ -16,6 +18,7 @@ export const chatApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["chats"],
     }),
   }),
 });

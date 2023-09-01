@@ -14,15 +14,17 @@ import Spinner from "components/Spinner";
 //  hooks
 import { useLoginMutation } from "redux/requests/auth";
 //  types
-import { loginInputsTypes, loginError } from "./types";
+import { loginInputsTypes, loginError, loginSuccessType } from "./types";
 //  redux
 import { useDispatch } from "redux/hooks";
 import { changeSpinner } from "redux/slices/app";
+import Cookies from "universal-cookie";
 
 function Form() {
   //  variables
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cookie = new Cookies();
 
   //  hooks
   const [login, loginResult] = useLoginMutation();
@@ -39,12 +41,15 @@ function Form() {
 
     if (loginResult.isError && loginResult.error) {
       var errorObjet: loginError = loginResult.error;
-      console.log("aaaa : ", errorObjet);
+      message.error(errorObjet.data.message);
     }
 
     if (loginResult.isSuccess) {
       messageApi.success("You have successfully logged in");
-      navigate("/home");
+      const loginSuccessData: loginSuccessType =
+        loginResult.data as loginSuccessType;
+      cookie.set("access", loginSuccessData.access_token);
+      navigate("/chats");
     }
   }, [loginResult]);
 

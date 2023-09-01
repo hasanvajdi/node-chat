@@ -32,7 +32,7 @@ function Form() {
 
   //  handlers
   const handleSignup = (data: loginInputsTypes) => {
-    console.log('data : ', data);
+    console.log("data : ", data);
     singup(data);
   };
 
@@ -46,9 +46,8 @@ function Form() {
     }
 
     if (signupResult.isSuccess) {
-      const signupData:loginSuccess = signupResult.data as loginSuccess
-      cookie.set("access", signupData.access_token)
-
+      const signupData: loginSuccess = signupResult.data as loginSuccess;
+      cookie.set("access", signupData.access_token);
 
       navigate("/chats");
     }
@@ -100,7 +99,7 @@ function Form() {
                 </AntdForm.Item>
 
                 <SubmitButton block className="mt-4">
-                    S I G N U P
+                  S I G N U P
                 </SubmitButton>
               </AntdForm>
             </div>

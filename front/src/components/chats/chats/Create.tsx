@@ -34,8 +34,10 @@ function CreateChat(props: createChatTypes) {
     }
 
     if (createResult.isSuccess) {
-      message.error("this user not found.");
+      console.log("createResult : ", createResult.data);
+      message.success("Chat was created successfully");
       setIsLoading(false);
+      handleClose(false);
     }
   }, [createResult]);
 
