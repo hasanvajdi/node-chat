@@ -1,71 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Modal, Form, Input, message, Spin } from "antd";
-
+//  icons
+import { FaPlus } from "react-icons/fa";
+//  style
+import chatsStyle from "./styles.module.scss";
 //  components
-import SubmitButton from "components/Buttons/Submit";
-//  hooks
-import { useCreateChatMutation } from "redux/requests/chats";
-//  types and interfaces
-import { createChatTypes } from "./types";
+import CreateChat from "./CreateModal";
 
-function CreateChat(props: createChatTypes) {
-  //  variables
-  const { handleClose } = props;
-
+function Create() {
   //  states
-  const [isLoading, setIsLoading] = useState(false);
-
-  //  hooks
-  const [createChat, createResult] = useCreateChatMutation();
-
-  //  handlers
-  const handleCreateChat = (data: string) => {
-    setIsLoading(true);
-    createChat(data);
-  };
-
-  //  side effects
-  useEffect(() => {
-    if (createResult.isError) {
-      const errorObject: any = createResult.error;
-      message.error(errorObject.data.message);
-      setIsLoading(false);
-    }
-
-    if (createResult.isSuccess) {
-      console.log("createResult : ", createResult.data);
-      message.success("Chat was created successfully");
-      setIsLoading(false);
-      handleClose(false);
-    }
-  }, [createResult]);
+  const [createChatIsOpen, setCreateChatIsOpen] = useState(false);
 
   return (
-    <Modal
-      open
-      footer={null}
-      title={<h2>Create New Chat</h2>}
-      onCancel={() => handleClose(false)}
-    >
-      <Spin spinning={isLoading}>
-        <div className="w-full min-h-10 h-fit mt-12">
-          <Form onFinish={handleCreateChat}>
-            <Form.Item
-              name="receiver"
-              rules={[{ required: true, message: " " }]}
-            >
-              <Input size="large" placeholder="type username" />
-            </Form.Item>
-
-            <SubmitButton block className="">
-              Create
-            </SubmitButton>
-          </Form>
+    <>
+      {createChatIsOpen && <CreateChat handleClose={setCreateChatIsOpen} />}
+      <div
+        className={chatsStyle.createNewChat}
+        onClick={() => setCreateChatIsOpen(true)}
+      >
+        <div className="flex justify-center px-4 py-2 rounded hover:bg-gray-100 cursor-pointer transition-all duration-300">
+          <FaPlus className="mr-1 mt-1" />
+          <span>create new chat</span>
         </div>
-      </Spin>
-    </Modal>
+      </div>
+    </>
   );
 }
 
-export default CreateChat;
+export default Create;
