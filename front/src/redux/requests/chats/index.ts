@@ -2,8 +2,6 @@ import { createApi } from "@reduxjs/toolkit/dist/query/react";
 
 //  base query
 import { privateBaseQuery } from "..";
-//  types and interfaces
-import type { chatItemType } from "components/chats/chats/types";
 
 export const chatApi = createApi({
   reducerPath: "chatApi",
