@@ -5,6 +5,7 @@ import { Divider } from "antd";
 import { useGetChatsQuery } from "redux/requests/chats";
 //  components
 import Item from "./Item";
+import ItemSkeleton from "./Skeleton";
 
 function List() {
   //  hooks
@@ -13,7 +14,12 @@ function List() {
   //  handlers
   const handleShowChats = () => {
     if (chats.isFetching) {
-      return <span>loading...</span>;
+      return [1, 2, 3, 4, 5].map((item: number) => (
+        <>
+          <ItemSkeleton />
+          <Divider style={{ marginTop: 5, marginBottom: 5, height: 0 }} />
+        </>
+      ));
     } else if (!chats.isFetching && chats.isSuccess) {
       const data: chatItemType[] = chats.data as chatItemType[];
 
