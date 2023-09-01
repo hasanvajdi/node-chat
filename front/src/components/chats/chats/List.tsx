@@ -37,4 +37,4 @@ function List() {
   return <div>{handleShowChats()}</div>;
 }
 
-export default memo(List);
+export default List;
