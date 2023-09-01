@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Form as AntdForm, message } from "antd";
 
 //  styles
@@ -105,10 +105,11 @@ function Form() {
             </div>
           </Spinner>
 
-          {/*<div className={loginFormStyles.loginFormText}>
-            <span>RUP</span>
-            <span>managment</span>
-          </div>*/}
+          <div className={loginFormStyles.loginFormText}>
+            <Link to="/signup">
+              <span>Create an account</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
