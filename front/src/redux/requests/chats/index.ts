@@ -21,7 +21,10 @@ export const chatApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["chats"],
+      invalidatesTags: (result: any, error: any, arg: any) => {
+        if (result) return [{ type: "chats", id: arg.id }];
+        return null;
+      },
     }),
   }),
 });
