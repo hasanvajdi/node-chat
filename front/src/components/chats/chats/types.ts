@@ -2,4 +2,11 @@ interface createChatTypes {
   handleClose: Function;
 }
 
-export type { createChatTypes };
+interface chatItemType {
+  chatId: string;
+  createdAt: string;
+  user1: string;
+  user2: string;
+}
+
+export type { createChatTypes, chatItemType };
