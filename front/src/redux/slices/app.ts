@@ -4,7 +4,10 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   spinner: false,
-  selectedChat: null
+  selectedChat: null,
+  allMessages: [],
+  inputValue: null,
+  seenMessage: null,
 };
 
 const appSlice = createSlice({
@@ -16,11 +19,20 @@ const appSlice = createSlice({
     },
     changeSelectedChat: (state, action: PayloadAction<any>)=>{
       state.selectedChat = action.payload
+    },
+    changeAllMessages: (state, action: PayloadAction<any>)=>{
+      state.allMessages = action.payload
+    },
+    changeInputValue: (state, action: PayloadAction<any>)=>{
+      state.inputValue = action.payload
+    },
+    changeSeenMessage: (state, action: PayloadAction<any>)=>{
+      state.seenMessage = action.payload
     }
   },
 });
 
 
 
-export const { changeSpinner, changeSelectedChat } = appSlice.actions;
+export const { changeSpinner, changeSelectedChat, changeAllMessages, changeInputValue, changeSeenMessage } = appSlice.actions;
 export default appSlice.reducer;

@@ -10,6 +10,7 @@ interface loginError {
 
 interface loginSuccessType {
   access_token: string;
+  username: string;
 }
 
 export type { loginInputsTypes, loginError, loginSuccessType };

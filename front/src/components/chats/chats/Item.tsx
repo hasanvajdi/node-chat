@@ -16,7 +16,7 @@ function Item(props: any) {
 	const dispatch = useDispatch();
 	const { data } = props;
 	const generator = new AvatarGenerator();
-	const socket = socketFunc(data.chatId);
+	//const socket = socketFunc(data.chatId);
 
 	//  states
 	const [imageIsLoaded, setImageIsLoaded] = useState(false);
@@ -28,15 +28,12 @@ function Item(props: any) {
 	//	});
 	//}
 
-	function handleOnDisconnect(b: any) {
-		console.log("dsiconnection : ", b);
-	}
+	//function handleOnDisconnect(b: any) {
+	//	console.log("dsiconnection : ", b);
+	//}
 
 	const handleGetChatData = () => {
 		dispatch(changeSelectedChat(data));
-		socket.connect();
-		//socket.on("connect", handleOnConnect);
-		socket.on("disconnect", handleOnDisconnect);
 	};
 
 	return (

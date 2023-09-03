@@ -6,12 +6,13 @@ import appSlice from "./slices/app"
 //  request
 import { authApi } from "./requests/auth";
 import { chatApi } from "./requests/chats";
-
+import socketMiddleware from "./socketMiddleware";
 
 //  middleware
 const customMiddlewares = [
     authApi.middleware,
     chatApi.middleware,
+    socketMiddleware
 ]
 
 const store = configureStore({
