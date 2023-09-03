@@ -42,7 +42,6 @@ function MessageItem(props: any) {
 	var handleCallback = (entries: any) => {
 		const [entry] = entries;
 		if (entry.isIntersecting) {
-			console.log("in if");
 			setIsSeen(true);
 			dispatch(
 				changeSeenMessage({
@@ -84,9 +83,6 @@ function MessageItem(props: any) {
 		};
 	}, [message]);
 
-	useEffect(() => {
-		console.log("isSeen : ", isSeen);
-	}, [isSeen]);
 
 	useEffect(() => {
 		if (seenMessageId) {

@@ -32,7 +32,6 @@ function Form() {
 
 	//  handlers
 	const handleSignup = (data: loginInputsTypes) => {
-		console.log("data : ", data);
 		singup(data);
 	};
 

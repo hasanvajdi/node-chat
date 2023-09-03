@@ -21,16 +21,7 @@ function Item(props: any) {
 	//  states
 	const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
-	//  handlers
-	//function handleOnConnect() {
-	//	socket.emit("getAllMessages", { messages: "all" }, (a: any) => {
-	//		console.log("hiiii", a);
-	//	});
-	//}
 
-	//function handleOnDisconnect(b: any) {
-	//	console.log("dsiconnection : ", b);
-	//}
 
 	const handleGetChatData = () => {
 		dispatch(changeSelectedChat(data));

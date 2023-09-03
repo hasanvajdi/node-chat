@@ -1,6 +1,5 @@
 import axios from "axios";
 
-console.log("envv : ", process.env.API_BASE_URL_DEVELOPMENT);
 
 const api: any = axios.create({
   baseURL: "http://localhost:8000", //process.env.API_BASE_URL_DEVELOPMENT,

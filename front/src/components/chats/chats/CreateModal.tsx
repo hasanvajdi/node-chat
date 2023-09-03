@@ -34,7 +34,6 @@ function CreateChat(props: createChatTypes) {
     }
 
     if (createResult.isSuccess) {
-      console.log("createResult : ", createResult.data);
       message.success("Chat was created successfully");
       setIsLoading(false);
       handleClose(false);
