@@ -6,10 +6,12 @@ import { useSelector } from "react-redux";
 
 //  styles
 import messagesStyle from "./styles.module.scss";
+//	icons
+import { FaCheckCircle } from "react-icons/fa";
 
 //	redyx
 import { useDispatch } from "redux/hooks";
-import { changeSeenMessage } from "redux/slices/app";
+import { changeSeenMessage, changeSeenMessageId } from "redux/slices/app";
 import { seenMessage } from "redux/actions";
 
 function MessageItem(props: any) {
@@ -21,6 +23,7 @@ function MessageItem(props: any) {
 	var observerRefValue: any = null;
 	var observer: any;
 	const username = cookie.get("username");
+	const seenMessageId = useSelector((state: any) => state.app.seenMessageId);
 
 	const refOptions = {
 		root: null,
@@ -44,7 +47,7 @@ function MessageItem(props: any) {
 			dispatch(
 				changeSeenMessage({
 					messageId: message.messageId,
-					receiverUsername: message.receiver,
+					senderUsername: message.sender,
 					chatId: message.chatId,
 				})
 			);
@@ -58,6 +61,12 @@ function MessageItem(props: any) {
 			return messageRef;
 		} else {
 			return null;
+		}
+	};
+
+	const handleShowCheck = () => {
+		if (isSeen && message.sender === username) {
+			return <FaCheckCircle />;
 		}
 	};
 
@@ -79,6 +88,13 @@ function MessageItem(props: any) {
 		console.log("isSeen : ", isSeen);
 	}, [isSeen]);
 
+	useEffect(() => {
+		if (seenMessageId) {
+			if (seenMessageId === message.messageId) setIsSeen(true);
+			dispatch(changeSeenMessageId(null));
+		}
+	}, [seenMessageId]);
+
 	return (
 		<div
 			className={messagesStyle.message}
@@ -89,9 +105,9 @@ function MessageItem(props: any) {
 						? "ml-auto bg-red-100"
 						: "mr-auto bg-yellow-100"
 				}`}>
-				<span>{message.text}</span>
+				<p>{message.text}</p>
+				<div className="mt-2 text-gray-500 text-sm">{handleShowCheck()}</div>
 			</div>
-			<div>{isSeen}</div>
 		</div>
 	);
 }

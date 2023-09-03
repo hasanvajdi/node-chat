@@ -8,7 +8,7 @@ import messagesStyle from "./styles.module.scss";
 
 //  components
 import MessageItem from "./Item";
-import { getAllMessages, socketConnect } from "redux/actions";
+import { getAllMessages, socketConnect, listenToSeen } from "redux/actions";
 
 function MessagesList() {
 	//  variables
@@ -23,6 +23,7 @@ function MessagesList() {
 		if (chat) {
 			dispatch(socketConnect());
 			dispatch(getAllMessages());
+			dispatch(listenToSeen());
 		}
 	}, [chat]);
 

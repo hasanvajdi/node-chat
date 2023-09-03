@@ -27,7 +27,7 @@
       padding: 0 5px;
       
       .messageSelf{
-        @include flexBox();
+        @include flexBox(column, flex-start, flex-end);
         width: fit-content;
         max-width: 200px;
         height: 100%;

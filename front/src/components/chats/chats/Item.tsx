@@ -59,7 +59,7 @@ function Item(props: any) {
 					/>
 				)}
 			</div>
-			<span className={chatItemStyles.chatTitle}>{data.user2}</span>
+			<span className={chatItemStyles.chatTitle}>{data.receiver}</span>
 		</div>
 	);
 }

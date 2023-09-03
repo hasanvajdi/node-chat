@@ -8,6 +8,7 @@ const initialState = {
   allMessages: [],
   inputValue: null,
   seenMessage: null,
+  seenMessageId: null
 };
 
 const appSlice = createSlice({
@@ -28,11 +29,14 @@ const appSlice = createSlice({
     },
     changeSeenMessage: (state, action: PayloadAction<any>)=>{
       state.seenMessage = action.payload
+    },
+    changeSeenMessageId: (state, action: PayloadAction<any>)=>{
+      state.seenMessageId = action.payload
     }
   },
 });
 
 
 
-export const { changeSpinner, changeSelectedChat, changeAllMessages, changeInputValue, changeSeenMessage } = appSlice.actions;
+export const { changeSpinner, changeSelectedChat, changeAllMessages, changeInputValue, changeSeenMessage, changeSeenMessageId } = appSlice.actions;
 export default appSlice.reducer;

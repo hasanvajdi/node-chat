@@ -1,6 +1,10 @@
 import Cookies from "universal-cookie";
 import io from "socket.io-client";
-import { changeAllMessages } from "./slices/app";
+import {
+	changeAllMessages,
+	changeSeenMessage,
+	changeSeenMessageId,
+} from "./slices/app";
 
 // Socket connection URL
 const HOST =
@@ -70,6 +74,13 @@ const socketMiddleware =
 			case "socket/seenMessage": {
 				const seenMessageObject = getState().app.seenMessage;
 				socket.emit("messageSeen", seenMessageObject);
+				break;
+			}
+
+			case "socket/listToSeen": {
+				socket.on("seenMessage", (e) => {
+					dispatch(changeSeenMessageId(e.messageId));
+				});
 				break;
 			}
 
