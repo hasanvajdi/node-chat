@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //  packages
 import { AvatarGenerator } from "random-avatar-generator";
@@ -21,11 +21,18 @@ function Item(props: any) {
 	//  states
 	const [imageIsLoaded, setImageIsLoaded] = useState(false);
 
-
-
 	const handleGetChatData = () => {
 		dispatch(changeSelectedChat(data));
 	};
+
+	//useEffect(() => {
+	//	console.log("hiiiiiiiii");
+	//	return () => {
+	//		console.log("in will unmount");
+	//	};
+	//}, []);
+
+	console.log("data ; ", data);
 
 	return (
 		<div
@@ -50,7 +57,7 @@ function Item(props: any) {
 					/>
 				)}
 			</div>
-			<span className={chatItemStyles.chatTitle}>{data.receiver}</span>
+			<span className={chatItemStyles.chatTitle}>{data?.receiver}</span>
 		</div>
 	);
 }

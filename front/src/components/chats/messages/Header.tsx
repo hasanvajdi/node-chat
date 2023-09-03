@@ -17,7 +17,7 @@ function MessagesHeader() {
 					className="h-full w-full"
 				/>
 			</div>
-			<span className="mt-1 ml-2">{chat.user2}</span>
+			<span className="mt-1 ml-2">{chat.receiver}</span>
 		</div>
 	);
 }
