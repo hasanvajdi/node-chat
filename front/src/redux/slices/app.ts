@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   spinner: false,
+  selectedChat: null
 };
 
 const appSlice = createSlice({
@@ -13,10 +14,13 @@ const appSlice = createSlice({
     changeSpinner: (state, action: PayloadAction<boolean>) => {
       state.spinner = action.payload;
     },
+    changeSelectedChat: (state, action: PayloadAction<any>)=>{
+      state.selectedChat = action.payload
+    }
   },
 });
 
 
 
-export const { changeSpinner } = appSlice.actions;
+export const { changeSpinner, changeSelectedChat } = appSlice.actions;
 export default appSlice.reducer;

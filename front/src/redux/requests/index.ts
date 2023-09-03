@@ -3,7 +3,7 @@ import Cookies from "universal-cookie";
 
 const baseUrl =
   process.env.NODE_ENV === "development"
-    ? process.env.REACT_APP_API_BASE_URL_PRODUCTION
+    ? process.env.REACT_APP_API_BASE_URL_DEVELOPMENT
     : process.env.REACT_APP_API_BASE_URL_PRODUCTION;
 
 export const privateBaseQuery = (restOfUrl: string) => {
