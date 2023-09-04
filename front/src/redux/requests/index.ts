@@ -1,12 +1,14 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import Cookies from "universal-cookie";
 
-const baseUrl =
+
+
+export const privateBaseQuery = (restOfUrl: string) => {
+  const baseUrl =
   process.env.NODE_ENV === "development"
     ? process.env.REACT_APP_API_BASE_URL_DEVELOPMENT
     : process.env.REACT_APP_API_BASE_URL_PRODUCTION;
-
-export const privateBaseQuery = (restOfUrl: string) => {
+  
   const cookie = new Cookies();
 
   return fetchBaseQuery({
@@ -19,6 +21,11 @@ export const privateBaseQuery = (restOfUrl: string) => {
 };
 
 export const publicBaseQuery = (restOfUrl: string) => {
+  const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_API_BASE_URL_DEVELOPMENT
+    : process.env.REACT_APP_API_BASE_URL_PRODUCTION;
+  
   return fetchBaseQuery({
     baseUrl: baseUrl + restOfUrl,
   });
