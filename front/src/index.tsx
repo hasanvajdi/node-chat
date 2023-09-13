@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// import { Helmet } from "react-helmet";
 
 import { RouterProvider } from "react-router-dom";
 import { ConfigProvider } from "antd";
@@ -28,15 +29,31 @@ const root = ReactDOM.createRoot(
 
 const queryClient = new QueryClient();
 
+function RayChat() {
+  const myWindow: any = window;
+  myWindow.RAYCHAT_TOKEN = "c030a005-361e-49e5-b02b-19ead862dc7f";
+
+  (function () {
+    const d = document;
+    var s: any = d.createElement("script");
+    s.src = "https://widget-react.raychat.io/install/widget.js";
+    s.async = 1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+}
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReduxProvider store={store}>
         <ConfigProvider theme={theme}>
-          <RouterProvider
-            router={router}
-            fallbackElement={<span>loading...</span>}
-          />
+          <>
+            {RayChat()}
+            <RouterProvider
+              router={router}
+              fallbackElement={<span>loading...</span>}
+            />
+          </>
         </ConfigProvider>
       </ReduxProvider>
     </QueryClientProvider>
